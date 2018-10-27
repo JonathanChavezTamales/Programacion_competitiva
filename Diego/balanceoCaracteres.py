@@ -1,4 +1,6 @@
-#Programa que balancea paréntesis, corchetes y llaves
+#Programa que revisa si paréntesis, llaves y corchetes están balanceados.
+
+
 def alterno(caracter):
     if caracter == '{':
         return '}'
@@ -8,6 +10,7 @@ def alterno(caracter):
         return ']'
     else:
         return 'n'
+
 def bla(str):
     abiertos = []
     b = 0
