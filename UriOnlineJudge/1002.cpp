@@ -2,6 +2,11 @@
 using namespace std;
 
 int main(){
-	
-	cout<<"Hello World!\n";
+	double pi = 3.14159;	
+	double r;
+	cin>>r;
+	double a = pi*r*r;
+	cout.precision(4);
+	cout<<"A="<< fixed << a<<endl;
 }
+
