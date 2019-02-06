@@ -28,7 +28,9 @@ def bla(str):
         elif str[i] == alterno(abiertos[-1]):
             abiertos.pop()
 
-
     if len(abiertos) == 0:
         return True
     return False
+
+
+    
