@@ -2,3 +2,6 @@
 *.ipynb
 *.o
 *.out
+.vscode
+*.class
+
