@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
-#include <set>
+#include <unordered_set>
+#include <algorithm>
 
 using namespace std;
 
@@ -9,19 +10,15 @@ int main(){
 	cin>>n;
 	while(n--){
 		string s;
-		set<int> p;
 		cin>>s;
-		bool adj = true;
-		for(int i=0; i<s.length(); i++){
-			p.insert(s[i]);
-			if(i>0){
-				if(s[i-1] > s[i])
-					adj = false;
+		string res = "Yes";
+		sort(s.begin(), s.end());
+		for(int i=0; i<s.length()-1; i++){
+			if(s[i]+1 != s[i+1]){
+				res = "No";
+				break;
 			}
 		}
-		if(p.size() == s.length() && adj)
-			cout<<"YES"<<endl;
-		else
-			cout<<"NO"<<endl;
+		cout<<res<<endl;
 	}
 }

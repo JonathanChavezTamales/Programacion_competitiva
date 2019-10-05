@@ -2,13 +2,17 @@
 
 using namespace std;
 
-int main(){
-	int i;
-	cin>>i;
-	int a= 1;
-	for(int j=1; j<=i; j++){
-		a+=j*2;
+int rhombus(int n){
+	if(n == 1){
+		return 1;
 	}
-	cout<<a;
+	else{
+		return 4*n-4+rhombus(n-1);
+	}
+}
 
+int main(){
+	int a;
+	cin>>a;
+	cout<<rhombus(a)<<endl;
 }
