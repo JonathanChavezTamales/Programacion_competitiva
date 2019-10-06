@@ -7,14 +7,35 @@ using namespace std;
 
 int main(){
 	int n, m;
-	vector <set<string>> a;
 	cin>>n>>m;
-	for(int i=0; i<n; i++){
+	vector<int> pos;
+	string fs;
+	cin>>fs;
+
+	for(int i=1; i<n; i++){
+		cerr<<i<<endl;
+		string s;
+		cin>>s;
 		for(int j=0; j<m; j++){
-			string x;
-			cin>>x;
-			a[j].insert(x);
+			cerr<<s[j]<<"=="<<fs[j]<<endl;
+			if(s[j] == fs[j]){
+				cerr<<s[j]<<endl;
+				pos.push_back(j);
+				cerr<<"pushed "<<i<<endl;
+			}	
 		}
 	}
-	cout<<a[2].size();
+
+	cerr<<"fin de letras"<<endl;	
+	int grading[m];
+	int sum = 0;	
+	for(int i=0; i<m; i++){
+		cin>>grading[i];
+		sum+= grading[i];
+	}
+
+	for(int i=0; i<pos.size(); i++){
+		sum += grading[pos[i]];
+	}
+	cout<<sum;
 }

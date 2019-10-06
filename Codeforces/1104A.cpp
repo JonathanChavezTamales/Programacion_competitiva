@@ -4,31 +4,24 @@
 using namespace std;
 
 int main(){
-	
-	int n,m;
-	cin>>n>>m;
-	vector<int> a(n);
-	vector<int> b(m);
-
-	for(int i=0; i<n; i++){
-		cin>>a[i];
+	int n;
+	cin>>n;
+	if(n==1){
+	cout<<n<<endl<<n;
+	return 0;
 	}
-
-	for(int i=0; i<b.size(); i++){
-		cin>>b[i];
-		for(int j=0; j<a.size(); j++){
-			clog<<b[i]<<" - "<<a[j]<<endl;
-			if((b[i]+a[j])%2==1){
-				clog<<"erased "<<b[i]<<" with "<<a[j]<<endl;
-				b.erase(b.begin()+i);
-				a.erase(a.begin()+j);
-				i--;
-				j--;
-				break;
-			}
-		}
+	int d = 2;
+	while(n/d > 10){
+		d++;
 	}
-
-	cout<<m-b.size();
-	
+	cout<<(n%d!=0 ? d+1 : d)<<endl;
+	if(d*10== n)
+		d = n;
+	int res = 0;
+	for(int i=0; i<d; i++){
+		if(n%d!=0 && i==d-1)
+			cout<<n/d + 1<<" ";
+		else
+			cout<<n/d<<" ";
+	}
 }
