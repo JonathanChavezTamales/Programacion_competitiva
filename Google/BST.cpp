@@ -105,6 +105,7 @@ int height(Node* root){
 	return max(lefth, righth);
 }
 
+//ESTÁ MAL
 void printLevel(Node* root, int level){
 	if(root == NULL){
 		return;
@@ -131,17 +132,15 @@ void printLevel(Node* root, int level){
 
 int main(){
 	BST tree;
-	tree.root = new Node(6);
-	tree.root->left = new Node(3);
-	tree.root->right = new Node(9);
-	tree.root->left->left = new Node(1);
-	insert(tree.root, 200);
-	insert(tree.root, 114);
-	insert(tree.root, 1);
+	tree.root = new Node(10);
+	tree.root->left = new Node(5);
+	tree.root->right = new Node(20);
+	tree.root->left->left = new Node(3);
 	insert(tree.root, 6);
+	insert(tree.root, 22);
 	tree.inOrder(tree.root);
 	cout<<endl<<search(tree.root, 113)<<endl;	
 	levelOrder(tree.root);
 	cout<<endl<<height(tree.root)<<endl;
-	printLevel(tree.root, 1);
+	printLevel(tree.root, 2);
 }

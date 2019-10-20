@@ -23,8 +23,7 @@ void print(Node* root){
 
 void remove();
 
-vector<string> autocomplete(Node* root, string search_term){
-	
+vector<string> autocomplete(Node* root, string search_term){	
 }
 
 void insert(Node* root, string s){
