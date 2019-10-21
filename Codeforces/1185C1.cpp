@@ -4,22 +4,24 @@
 using namespace std;
 
 int main(){
-	int n, m;
-	vector <int> t(n);
-	cin>>n>>m;
+	int n, k;
+	cin>>n>>k;
+	vector<int> p(n);
 	int sum = 0;
-	int last;
 	for(int i=0; i<n; i++){
-		cin>>t[i];
-		if(sum + t[i] <= m){
-			sum += t[i];
-			last = i;
+		cin>>p[i];
+		sum += p[i];
+		int reps = 0;
+		if(sum > k){
+			int reversesum = 0;
+			reps++;
+			for(int j=i-1; j>=0; j--){
+				reversesum += p[j];
+				if(sum-reversesum <= k){
+					break;
+				}else reps++;
+			}
 		}
+		cout<<reps<<" ";
 	}
-	vector <int> alcanzan(last+1);
-	for(int i=0; i<alcanzan.size(); i++){
-		alcanzan[i] = t[i];
-		clog<<0<<" ";
-	}
-	sort(alcanzan.begin(), alcanzan.end());
 }
