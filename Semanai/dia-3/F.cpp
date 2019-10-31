@@ -10,6 +10,7 @@
 #include <queue>
 #include <deque>
 #include <sstream>
+#include <cctype>
 
 
 #define debug(x) cerr<<"["<<#x<<"]: "<<x<<endl;
@@ -22,38 +23,16 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-
-	int n;
-	cin>>n;
-
-	int unos = 0, dos = 0;
-	int last = 0, changes = 0;
-
-	int res = 0;
-
-	while(n--){
-		int x;
-		cin>>x;
-		if(x == 1) unos++;
-		else dos++;
-
-
-		if(last != x){
-			changes++;
-			last = x;
-		}
-
-		if(changes&1){
-			res = max(min(unos,dos), res);	
-		}
-		else{
-			res = max(min(unos, dos), res);
-			if(last == 1) dos = 0;
-			else unos = 0;
-		}
+	int n,k;
+	cin>>n>>k;
+	string s;
+	cin>>s;
+	int a=0,b=0,l=0,r=0;
+	for(int i=0;i<n;i++){
+		s[i]=='a'? a++ : b++;
+		if(min(a,b)<=k) l=max(l,a+b);
+		else s[r++]=='a'? a-- : b--;
 	}
-
-	cout<<res*2<<endl;
-
+	cout<<l<<endl;
 }
 

@@ -27,11 +27,12 @@ Cons: Memory inefficiency O(n^2) (sparse matrix), when adding a vertex also O(n^
 
 ## Adjacency list
 
-Is a vector/array that contains a linked list of the vertices, if its a weighted graph, it is stored in a pair.
+Is a vector/array that contains a linked list/set/hashmap of the vertices, if its a weighted graph, it is stored in a pair.
 
 Pros: Saves space O(|V| + |E|), adding vertex is easier.
 
 Cons: Queries like checking an edge between two vertices are not that efficient O(|V|).
+
 
 
 

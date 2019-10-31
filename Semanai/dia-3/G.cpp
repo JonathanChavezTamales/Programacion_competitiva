@@ -10,6 +10,7 @@
 #include <queue>
 #include <deque>
 #include <sstream>
+#include <cctype>
 
 
 #define debug(x) cerr<<"["<<#x<<"]: "<<x<<endl;
@@ -19,41 +20,38 @@
 
 using namespace std;
 
+int number_of_caps(string s){
+	int sum = 0;
+	for(int i=0; i<s.length(); i++){
+		if(isupper(s[i])) sum++;
+	}
+	return sum;
+}
+
+
+
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
 
 	int n;
 	cin>>n;
-
-	int unos = 0, dos = 0;
-	int last = 0, changes = 0;
-
-	int res = 0;
-
-	while(n--){
-		int x;
-		cin>>x;
-		if(x == 1) unos++;
-		else dos++;
-
-
-		if(last != x){
-			changes++;
-			last = x;
-		}
-
-		if(changes&1){
-			res = max(min(unos,dos), res);	
-		}
+	cin.ignore();
+	string t;
+	getline(cin, t);
+	int mcaps = 0;
+	int cp = 0;
+	for(int i=0;i<n; i++){
+		if(t[i] == ' '){
+					cp = 0;
+		}	
 		else{
-			res = max(min(unos, dos), res);
-			if(last == 1) dos = 0;
-			else unos = 0;
+			if(isupper(t[i])){ cp++;
+				
+			}
 		}
+	mcaps = mcaps < cp ? cp : mcaps;
+
 	}
-
-	cout<<res*2<<endl;
-
+	cout<<mcaps<<endl;
 }
-

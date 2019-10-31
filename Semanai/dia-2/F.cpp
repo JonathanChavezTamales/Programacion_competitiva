@@ -14,10 +14,9 @@
 
 #define debug(x) cerr<<"["<<#x<<"]: "<<x<<endl;
 #define debug_c(a) for(auto it=a.begin(); it!=a.end(); ++it) {cerr<<*it<<",";} cerr<<endl;
-#define FOR(i,f,t) for(int i=f; i<(int)t; ++i)
-
 
 using namespace std;
+
 
 int main(){
 	ios::sync_with_stdio(false);
@@ -25,35 +24,21 @@ int main(){
 
 	int n;
 	cin>>n;
-
-	int unos = 0, dos = 0;
-	int last = 0, changes = 0;
-
-	int res = 0;
-
-	while(n--){
-		int x;
+	vector<long int> a(n);
+	for(int i=0; i<n; i++){
+		long int x;
 		cin>>x;
-		if(x == 1) unos++;
-		else dos++;
-
-
-		if(last != x){
-			changes++;
-			last = x;
-		}
-
-		if(changes&1){
-			res = max(min(unos,dos), res);	
-		}
-		else{
-			res = max(min(unos, dos), res);
-			if(last == 1) dos = 0;
-			else unos = 0;
-		}
+		a[i] = abs(x);
 	}
 
-	cout<<res*2<<endl;
-
+	sort(a.begin(), a.end());
+	
+	int sum = 0;
+	for(int i=0; i<n; i++){
+		for(int j=i+1; j<n; j++){
+			if(a[j]<2*a[i]) sum++;
+			else break;
+		}
+	}
+	cout<<sum;
 }
-

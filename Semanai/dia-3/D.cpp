@@ -22,38 +22,26 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-
+	
 	int n;
 	cin>>n;
-
-	int unos = 0, dos = 0;
-	int last = 0, changes = 0;
-
-	int res = 0;
-
-	while(n--){
-		int x;
-		cin>>x;
-		if(x == 1) unos++;
-		else dos++;
-
-
-		if(last != x){
-			changes++;
-			last = x;
+	string s;
+	cin>>s;
+	
+	if(n==1){
+		cout<<"NO"<<endl;
+	}
+	else{
+		bool possible = false;
+		for(int i=1; i<n; i++){
+			if(s[i]!=s[i-1]){
+				cout<<"YES"<<endl<<s[i-1]<<s[i]<<endl;
+				possible = true;
+				break;
+			}
 		}
-
-		if(changes&1){
-			res = max(min(unos,dos), res);	
-		}
-		else{
-			res = max(min(unos, dos), res);
-			if(last == 1) dos = 0;
-			else unos = 0;
-		}
+		if(!possible) cout<<"NO"<<endl;
 	}
 
-	cout<<res*2<<endl;
 
 }
-

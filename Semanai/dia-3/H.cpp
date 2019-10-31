@@ -10,6 +10,7 @@
 #include <queue>
 #include <deque>
 #include <sstream>
+#include <cctype>
 
 
 #define debug(x) cerr<<"["<<#x<<"]: "<<x<<endl;
@@ -25,35 +26,21 @@ int main(){
 
 	int n;
 	cin>>n;
-
-	int unos = 0, dos = 0;
-	int last = 0, changes = 0;
-
-	int res = 0;
-
-	while(n--){
-		int x;
-		cin>>x;
-		if(x == 1) unos++;
-		else dos++;
-
-
-		if(last != x){
-			changes++;
-			last = x;
-		}
-
-		if(changes&1){
-			res = max(min(unos,dos), res);	
-		}
-		else{
-			res = max(min(unos, dos), res);
-			if(last == 1) dos = 0;
-			else unos = 0;
-		}
+	vector<int> a(n);
+	vector<int> acc(n);
+	int sum = 0;
+	for(int i=0; i<n; i++){
+		cin>>a[i];
+		sum+=a[i];
+		acc[i] = sum;
 	}
 
-	cout<<res*2<<endl;
+	int m;
+	cin>>m;
+	for(int i=0; i<m; i++){
+		int q;
+		cin>>q;
+		cout<<lower_bound(acc.begin(), acc.end(), q)-acc.begin()+1<<endl;
+	}
 
 }
-

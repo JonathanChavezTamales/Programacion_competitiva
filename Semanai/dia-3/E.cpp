@@ -10,6 +10,7 @@
 #include <queue>
 #include <deque>
 #include <sstream>
+#include <cctype>
 
 
 #define debug(x) cerr<<"["<<#x<<"]: "<<x<<endl;
@@ -22,38 +23,30 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-
-	int n;
-	cin>>n;
-
-	int unos = 0, dos = 0;
-	int last = 0, changes = 0;
-
-	int res = 0;
-
-	while(n--){
-		int x;
-		cin>>x;
-		if(x == 1) unos++;
-		else dos++;
-
-
-		if(last != x){
-			changes++;
-			last = x;
+	
+	long long int n, k;
+	cin>>n>>k;
+	long long int l = 1, r = n;
+	bool prin = false;
+	cerr<<"a";
+	while(l<=r){
+		long long mid = (l+r)/2;
+		debug(mid);
+		debug(l);
+		debug(r);
+		if(mid*(mid+1)/2 == k + (n-mid)){
+			cout<<n-mid<<endl;
+			debug(mid);
+			prin = true;
+			break;
 		}
-
-		if(changes&1){
-			res = max(min(unos,dos), res);	
+		else if(mid*(mid+1)/2 -n+mid < k){
+			l = mid+1;
 		}
 		else{
-			res = max(min(unos, dos), res);
-			if(last == 1) dos = 0;
-			else unos = 0;
+			r = mid-1;
 		}
 	}
-
-	cout<<res*2<<endl;
-
+	if(!prin) cout<<l<<endl;
 }
 
