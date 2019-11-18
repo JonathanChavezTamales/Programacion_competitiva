@@ -28,4 +28,16 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
+	int a, b, c, d;
+	cin>>a>>b>>c>>d;
+	string s;
+	cin>>s;
+	int res = 0;
+	for(int i=0; i<s.length(); i++){
+		if(s[i]=='1') res+=a;
+		else if(s[i]=='2') res+=b;
+		else if(s[i] == '3') res+=c;
+		else res+=d;
+	}
+	cout<<res<<endl;
 }

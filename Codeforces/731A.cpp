@@ -28,4 +28,18 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
+	string s;
+	cin>>s;
+	char o = 'a';
+	int r = 0;
+	for(int i=0; i<s.length(); i++){
+		int a = abs(s[i]-o);
+		int b = ('z'-s[i]+1+o-'a');
+		int c = 'z'-o+1+s[i]-'a';
+		debug(a);
+		debug(b);
+		o = s[i];
+		r+=min(min(a,b),c);
+	}
+	cout<<r<<endl;
 }

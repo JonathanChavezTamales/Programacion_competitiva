@@ -28,4 +28,25 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
+	long int n;
+	cin>>n;
+	long int unr = 0;
+	long int curr = 0;
+	for(int i=0; i<n; i++){
+		int x;
+		cin>>x;
+		if(x>0){
+			curr+=x;
+		}
+		if(x==-1){
+			if(curr > 0){
+				curr--;
+			}
+			else{
+				curr = 0;
+				unr++;
+			}
+		}
+	}
+	cout<<unr<<endl;
 }

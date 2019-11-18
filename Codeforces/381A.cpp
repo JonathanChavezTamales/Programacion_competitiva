@@ -28,4 +28,32 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
+	int n;
+	cin>>n;
+	deque<int> d;
+	for(int i=0; i<n; i++){
+		int x;
+		cin>>x;
+		d.push_back(x);
+	}
+	int s=0, r=0;
+	for(int i=0; i<n; i++){
+		int front = d.front();
+		int back = d.back();
+		int res = 0;
+		if(back > front){
+			res = back;
+			d.pop_back();
+		}
+		else{
+			res = front;
+			d.pop_front();
+		}
+		if(i&1){
+			r+=res;
+		}
+		else s+=res;
+	}
+	cout<<s<<" "<<r<<endl;
+
 }

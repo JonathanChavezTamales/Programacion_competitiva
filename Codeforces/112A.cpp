@@ -28,4 +28,17 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
+	string x, y;
+	cin>>x>>y;
+	for(int i=0; i<x.length(); i++){
+		if(toupper(x[i]) > toupper(y[i])){
+			cout<<1<<endl;
+			return 0;
+		}
+		else if(toupper(x[i]) < toupper(y[i])){
+			cout<<-1<<endl;
+			return 0;
+		}
+	}
+	cout<<0<<endl;
 }
