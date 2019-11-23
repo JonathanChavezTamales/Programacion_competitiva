@@ -28,12 +28,29 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	long int a,b,c,d;
-	cin>>a>>b>>c>>d;
-	set<long int> s;
-	s.insert(a);
-	s.insert(b);
-	s.insert(c);
-	s.insert(d);
-	cout<< 4-s.size()<<endl;
+	int n;
+	cin>>n;
+	vector<int> a(n+1);
+	for(int i=1; i<n+1; i++){
+		cin>>a[i];
+	}
+	int m;
+	cin>>m;
+	while(m--){
+		int x, y;
+		cin>>x>>y;
+		debug(a[x]);
+		if(x-1 > 0) {
+			a[x-1] += y-1;
+		}
+		if(x+1 < n+1 ){
+			a[x+1] += a[x]-y;
+		}
+		debug(a[x-1]);
+		debug(a[x+1]);
+		a[x] = 0;
+	}
+	for(int i=1; i<n+1; i++){
+		cout<<a[i]<<endl;
+	}
 }

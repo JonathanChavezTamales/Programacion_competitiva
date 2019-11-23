@@ -28,12 +28,22 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	long int a,b,c,d;
-	cin>>a>>b>>c>>d;
-	set<long int> s;
-	s.insert(a);
-	s.insert(b);
-	s.insert(c);
-	s.insert(d);
-	cout<< 4-s.size()<<endl;
+	int t;
+	cin>>t;
+	while(t--){
+		int n;
+		cin>>n;
+		vector<int> a(n);
+		int sum = 0;
+		int min = 101;
+		int max = -1;
+		for(int i=0; i<n; i++){
+			cin>>a[i];
+			sum+=a[i];
+			max = a[i] > max ? a[i] : max;
+			min = a[i] < min ? a[i] : min;
+		}
+		int avg = sum/n;
+		cout<<(avg-min)*2+(max-avg)*2<<endl;
+	}
 }

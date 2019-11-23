@@ -28,12 +28,22 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	long int a,b,c,d;
-	cin>>a>>b>>c>>d;
-	set<long int> s;
-	s.insert(a);
-	s.insert(b);
-	s.insert(c);
-	s.insert(d);
-	cout<< 4-s.size()<<endl;
+	int t;
+	cin>>t;
+	while(t--){
+		long int a,b;
+		cin>>a>>b;
+		int d = abs(a-b);
+		int res = 0;
+		if(d/5 > 0){
+			res += d/5;
+			d %= 5;
+		}
+		if(d/2 > 0){
+			res += d/2;
+			d %= 2;
+		}
+		res+=d;
+		cout<<res<<endl;
+	}
 }

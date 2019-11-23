@@ -28,12 +28,12 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	long int a,b,c,d;
-	cin>>a>>b>>c>>d;
-	set<long int> s;
-	s.insert(a);
-	s.insert(b);
-	s.insert(c);
-	s.insert(d);
-	cout<< 4-s.size()<<endl;
+	int k, r;
+	cin>>k>>r;
+	for(int i=1; i<10; i++){
+		if(k*i%10 == r || k*i%10 == 0){
+			cout<<i<<endl;
+			return 0;
+		}
+	}
 }
