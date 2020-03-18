@@ -28,25 +28,15 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	int n, m;
-	cin>>n>>m;
-	bool der = true;
-	for(int i=0; i<n; i++){
-		for(int j=0; j<m; j++){
-			if(i%2==0){
-				cout<<"#";
-			}
-			else{
-				if((der && j==m-1) || (!der&& j==0)){
-					cout<<"#";
-				} else{
-					debug(der);
-					debug(j);
-					cout<<".";
-				}
-			}
-
+	int n;
+	cin>>n;
+	while(n--){
+		long int a,b,c,d;
+		cin>>a>>b>>c>>d;
+		if((a+b+c+d)%3 == 0){
+			cout<<"YES"<<endl;
+		} else{
+			cout<<"NO"<<endl;
 		}
-		cout<<endl;
 	}
 }

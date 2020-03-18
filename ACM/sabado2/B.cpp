@@ -28,25 +28,32 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	int n, m;
-	cin>>n>>m;
-	bool der = true;
-	for(int i=0; i<n; i++){
-		for(int j=0; j<m; j++){
-			if(i%2==0){
-				cout<<"#";
+	int q;
+	cin>>q;
+	while(q--){
+		int n;
+		cin>>n;
+		long int cero = 0;
+		long int uno = 0;
+		long int dos = 0;
+		long int total = 0;
+		while(n--){
+			long int x;
+			cin>>x;
+			if(x%3==0){
+				cero++;
+			} else if (x%3==1){
+				uno++;
+			} else if (x%3==2){
+				dos++;
 			}
-			else{
-				if((der && j==m-1) || (!der&& j==0)){
-					cout<<"#";
-				} else{
-					debug(der);
-					debug(j);
-					cout<<".";
-				}
-			}
-
 		}
-		cout<<endl;
+		total += cero;
+		int k = min(dos, uno);
+		total += k;
+		uno -=k;
+		dos -=k;
+		total += dos/3 + uno/3;
+		cout<<total<<endl;
 	}
 }

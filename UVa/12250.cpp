@@ -28,24 +28,27 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	int n, m;
-	cin>>n>>m;
-	bool der = true;
-	for(int i=0; i<n; i++){
-		for(int j=0; j<m; j++){
-			if(i%2==0){
-				cout<<"#";
-			}
-			else{
-				if((der && j==m-1) || (!der&& j==0)){
-					cout<<"#";
-				} else{
-					debug(der);
-					debug(j);
-					cout<<".";
-				}
-			}
-
+	string s = "";
+	int i = 0;
+	while(s != "#"){
+		i++;
+		cin>>s;
+		if(s == "#") return 0;
+		cout<<"Case "<<i<<": ";
+		if(s == "HELLO"){
+			cout<<"ENGLISH";
+		} else if(s == "HOLA"){
+			cout<<"SPANISH";
+		} else if(s == "HALLO"){
+			cout<<"GERMAN";
+		} else if(s == "BONJOUR"){
+			cout<<"FRENCH";
+		} else if(s == "CIAO"){
+			cout<<"ITALIAN";
+		} else if(s == "ZDRAVSTVUJTE"){
+			cout<<"RUSSIAN";
+		} else{
+			cout<<"UNKNOWN";
 		}
 		cout<<endl;
 	}

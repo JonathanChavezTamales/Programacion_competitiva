@@ -28,25 +28,28 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	int n, m;
-	cin>>n>>m;
-	bool der = true;
-	for(int i=0; i<n; i++){
-		for(int j=0; j<m; j++){
-			if(i%2==0){
-				cout<<"#";
-			}
-			else{
-				if((der && j==m-1) || (!der&& j==0)){
-					cout<<"#";
-				} else{
-					debug(der);
-					debug(j);
-					cout<<".";
-				}
-			}
+	int n;
+	cin>>n;
+	map<int, int> m;
 
-		}
-		cout<<endl;
+	for(int i=0; i<n; i++){
+		int a;
+		cin>>a;
+		m[i%3]+=a;
 	}
+	int maxi = 0;
+	for(auto it=m.begin(); it!=m.end(); ++it){
+		if(it->second > m[maxi]){
+			maxi = it->first;
+		}
+	}
+	if(maxi == 0){
+		cout<<"chest";
+	}
+	if(maxi ==1){
+		cout<<"biceps";
+	} else if(maxi == 2){
+		cout<<"back";
+	}
+	cout<<endl;
 }

@@ -28,25 +28,17 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	int n, m;
-	cin>>n>>m;
-	bool der = true;
-	for(int i=0; i<n; i++){
-		for(int j=0; j<m; j++){
-			if(i%2==0){
-				cout<<"#";
+	int x;
+	cin>>x;
+	int steps = 0;
+	while(x>0){
+		for(int i=5; i>0; i--){
+			if(x%i == 0){
+				steps += x/i;
+				x -= (x/i)*i;
+				break;
 			}
-			else{
-				if((der && j==m-1) || (!der&& j==0)){
-					cout<<"#";
-				} else{
-					debug(der);
-					debug(j);
-					cout<<".";
-				}
-			}
-
 		}
-		cout<<endl;
 	}
+	cout<<steps<<endl;
 }

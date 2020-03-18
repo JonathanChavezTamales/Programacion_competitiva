@@ -28,25 +28,29 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	int n, m;
-	cin>>n>>m;
-	bool der = true;
-	for(int i=0; i<n; i++){
-		for(int j=0; j<m; j++){
-			if(i%2==0){
-				cout<<"#";
+	int n;
+	cin>>n;
+	while(n--){
+		long long int x;
+		cin>>x;
+		int c = 0;
+		while(x>1){
+			if(x%2==0){
+				x/=2;
+				c++;	
+			} else if(x%3==0){
+				x*=2;
+				x/=3;
+				c++;
+			} else if (x%5==0){
+				x*=4;
+				x/=5;
+				c++;
+			} else{
+				c = -1;
+				break;
 			}
-			else{
-				if((der && j==m-1) || (!der&& j==0)){
-					cout<<"#";
-				} else{
-					debug(der);
-					debug(j);
-					cout<<".";
-				}
-			}
-
 		}
-		cout<<endl;
+		cout<<c<<endl;
 	}
 }

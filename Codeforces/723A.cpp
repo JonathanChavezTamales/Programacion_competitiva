@@ -1,15 +1,34 @@
+#ifdef LOCAL
 #include <iostream>
+#include <cmath>
 #include <vector>
 #include <algorithm>
+#include <set>
+#include <unordered_set>
+#include <map>
+#include <unordered_map>
+#include <stack>
+#include <queue>
+#include <deque>
+#include <sstream>
+#include <cctype>
+#include <list>
+#include <climits>
+#define debug(x) cerr<<"["<<#x<<"]: "<<x<<endl;
+#define debug_c(a) for(auto it=a.begin(); it!=a.end(); ++it) {cerr<<*it<<",";} cerr<<endl;
+#define EPS 0.0000001
+#else
+#include <bits/stdc++.h>
+#define debug(x) 42
+#define debug_c(a) 42
+#endif
+
 using namespace std;
 
 int main(){
-	vector<int> v(3);
-	cin >> v[0] >> v[1] >> v[2];
-	int max = 0, min = 101;
-	for(int i=0; i<3; i++){
-		max = v[i] > max? v[i] : max;
-		min = v[i] < min? v[i] : min;
-	}
-	cout<<max-min;
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	int a,b,c;
+	cin>>a>>b>>c;
+	cout<<max(a,max(b,c))-min(a,min(b,c))<<endl;
 }
