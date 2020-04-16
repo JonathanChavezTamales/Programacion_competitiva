@@ -25,32 +25,34 @@
 
 using namespace std;
 
+void solve(){
+	int n;
+	cin>>n;
+	vector<int> a(n);
+	for(int i=0; i<n; i++) cin>>a[i];
+	int maxi = 0;
+	for(int i=0; i<n; i++){
+		int k=n-1;
+		int count = 0;
+		for(int j=i; j<=k;){
+			if(a[j] == a[k]){
+				count ++ ;
+				maxi = max(maxi, count);
+				j++;
+			}
+			k--;
+		}
+	}
+	if(maxi+1 >= 3) cout<<"YES"<<endl;
+	else cout<<"NO"<<endl;
+}
+
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
 	int t;
 	cin>>t;
 	while(t--){
-		vector<string> a(9);
-		for(int i=0; i<9; i++){
-			
-				cin>>a[i];
-		
-		}
-			
-
-		for(int i=0; i<9; i++){
-			for(int j=0; j<9; j++){
-				if(a[i][j] == '6'){
-					cout<<1;
-				}
-				else{
-					cout<<a[i][j];
-				}
-			}
-			cout<<endl;
-		}
-
-
+		solve();
 	}
 }

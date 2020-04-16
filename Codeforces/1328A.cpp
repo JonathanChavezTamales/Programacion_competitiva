@@ -25,32 +25,29 @@
 
 using namespace std;
 
+void solve(){
+	long long int a, b;
+	cin>>a>>b;
+	if(a<=b){
+		cout<<b-a<<endl;
+	}
+	else{
+		if(a%b == 0){
+			cout<<0<<endl;
+		}
+		else{
+			cout<<b*(a/b+1)-a<<endl;	
+		}
+	}
+
+}
+
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
 	int t;
 	cin>>t;
 	while(t--){
-		vector<string> a(9);
-		for(int i=0; i<9; i++){
-			
-				cin>>a[i];
-		
-		}
-			
-
-		for(int i=0; i<9; i++){
-			for(int j=0; j<9; j++){
-				if(a[i][j] == '6'){
-					cout<<1;
-				}
-				else{
-					cout<<a[i][j];
-				}
-			}
-			cout<<endl;
-		}
-
-
+		solve();
 	}
 }

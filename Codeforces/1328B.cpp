@@ -25,32 +25,38 @@
 
 using namespace std;
 
+bool equals(double x, double y){
+	if(abs(x-y) < EPS) return true;
+	return false;
+}
+
+void solve(){
+	long long int n, k;
+	cin>>n>>k;
+	string s = "";
+	for(int i=0; i<n; i++){
+		s+= 'a';
+	}
+
+	double fb = (-1 + sqrt(1.0 +  8.0*k)) / 2.0;
+	debug(fb);
+
+	if(equals(fb, round(fb))){
+		s[n-(int)fb-1] = 'b'; 
+	}
+
+	cout<<s<<endl;
+
+}	
+
+
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
+
 	int t;
 	cin>>t;
 	while(t--){
-		vector<string> a(9);
-		for(int i=0; i<9; i++){
-			
-				cin>>a[i];
-		
-		}
-			
-
-		for(int i=0; i<9; i++){
-			for(int j=0; j<9; j++){
-				if(a[i][j] == '6'){
-					cout<<1;
-				}
-				else{
-					cout<<a[i][j];
-				}
-			}
-			cout<<endl;
-		}
-
-
+		solve();
 	}
 }

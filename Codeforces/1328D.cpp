@@ -25,32 +25,39 @@
 
 using namespace std;
 
+void solve(){
+	int n;
+	cin>>n;
+	vector<int> a(n);
+	for(int i; i<n; i++){
+		cin>>a[i];
+	}
+
+	bool termino = false;
+	int i=0;
+
+	vector<int> c(n, 0);
+	c[0] = 1;
+	int cont = 1;
+	int maxc = 1;
+	while(!termino){
+		if(a[i] != a[(i+1)%n]){
+			c[(i+1)%n] = cont+1;
+			cont-=2;
+		}
+		else{
+			c[(i+1)%n] = 1;
+			cont = 1;
+		}
+	}
+}
+
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
 	int t;
 	cin>>t;
 	while(t--){
-		vector<string> a(9);
-		for(int i=0; i<9; i++){
-			
-				cin>>a[i];
-		
-		}
-			
-
-		for(int i=0; i<9; i++){
-			for(int j=0; j<9; j++){
-				if(a[i][j] == '6'){
-					cout<<1;
-				}
-				else{
-					cout<<a[i][j];
-				}
-			}
-			cout<<endl;
-		}
-
-
+		solve();
 	}
 }

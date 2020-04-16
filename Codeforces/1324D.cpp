@@ -28,29 +28,21 @@ using namespace std;
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	int t;
-	cin>>t;
-	while(t--){
-		vector<string> a(9);
-		for(int i=0; i<9; i++){
-			
-				cin>>a[i];
-		
-		}
-			
-
-		for(int i=0; i<9; i++){
-			for(int j=0; j<9; j++){
-				if(a[i][j] == '6'){
-					cout<<1;
-				}
-				else{
-					cout<<a[i][j];
-				}
-			}
-			cout<<endl;
-		}
-
-
+	int n;
+	cin>>n;
+	vector<int> a(n);
+	vector<int> b(n);
+	vector<int> c(n);
+	for(int i=0; i<n; i++) cin>>a[i];
+	for(int i=0; i<n; i++){
+		cin>>b[i];
+		c[i] = a[i]-b[i];
 	}
+	sort(c.begin(), c.end());
+	long long int k = 0;
+	for(int i=0; i<n-1; i++){
+		auto it = lower_bound(c.begin()+i+1, c.end(), 1-c[i]);
+		k += c.end()-it;
+	}
+	cout<<k<<endl;
 }

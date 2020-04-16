@@ -25,32 +25,55 @@
 
 using namespace std;
 
+void solve(){
+	int n;
+	cin>>n;
+	string s;
+	cin>>s;
+
+	string mayor = "";
+	string menor = "";
+
+	bool b = false;
+
+	for(int i=0; i<n; i++){
+		if(s[i] == '0'){
+			mayor += '0';
+			menor += '0';
+		}
+		else if (s[i] == '2'){
+			if(!b){
+				mayor += '1';
+				menor += '1';
+			}
+			else{
+				menor += '2';
+				mayor += '0';
+			}
+		}
+		else {
+			if(b == true){
+				mayor += '0';
+				menor += '1';
+			}
+			else{
+				mayor += '1';
+				menor += '0';
+				b = true;
+			}
+		}
+	}
+
+	cout<<mayor<<endl<<menor<<endl;
+
+}
+
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
 	int t;
 	cin>>t;
 	while(t--){
-		vector<string> a(9);
-		for(int i=0; i<9; i++){
-			
-				cin>>a[i];
-		
-		}
-			
-
-		for(int i=0; i<9; i++){
-			for(int j=0; j<9; j++){
-				if(a[i][j] == '6'){
-					cout<<1;
-				}
-				else{
-					cout<<a[i][j];
-				}
-			}
-			cout<<endl;
-		}
-
-
+		solve();
 	}
 }

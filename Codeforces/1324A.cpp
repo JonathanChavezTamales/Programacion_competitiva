@@ -25,32 +25,31 @@
 
 using namespace std;
 
+void solve(){
+	int n;
+	cin>>n;
+
+	vector<int> a(n);
+	int pares = 0;
+	int impares =0;
+	for(int i=0;i<n; i++){
+		cin>>a[i];
+		if(a[i]&1) impares ++ ;
+		else pares ++;
+	}
+	if(pares == 0 || impares == 0){
+		cout<<"YES"<<endl;
+	}	
+	else cout << "NO"<<endl;
+}
+
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
+
 	int t;
 	cin>>t;
 	while(t--){
-		vector<string> a(9);
-		for(int i=0; i<9; i++){
-			
-				cin>>a[i];
-		
-		}
-			
-
-		for(int i=0; i<9; i++){
-			for(int j=0; j<9; j++){
-				if(a[i][j] == '6'){
-					cout<<1;
-				}
-				else{
-					cout<<a[i][j];
-				}
-			}
-			cout<<endl;
-		}
-
-
+		solve();
 	}
 }
