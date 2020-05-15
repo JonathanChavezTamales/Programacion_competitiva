@@ -1,6 +1,20 @@
 #ifdef LOCAL
 //////Librerias
-#include "libs.h"
+#include <iostream>
+#include <cmath>
+#include <vector>
+#include <algorithm>
+#include <set>
+#include <unordered_set>
+#include <map>
+#include <unordered_map>
+#include <stack>
+#include <queue>
+#include <deque>
+#include <sstream>
+#include <cctype>
+#include <list>
+#include <climits>
 //////Debug
 #define debug(x) cerr<<"["<<#x<<"]: "<<x<<endl;
 #define debuga(a) for(auto it=a.begin(); it!=a.end(); ++it) {cerr<<*it<<",";} cerr<<endl;
@@ -12,7 +26,7 @@
 #endif
 //////Constantes
 #define EPS 0.0000001
-#define CHP 1000000007
+#define MOD 1000000007
 #define endl '\n'
 //////Funciones
 #define MOD(n,k) ( ( ((n) % (k)) + (k) ) % (k))
@@ -22,8 +36,6 @@
 #define pb push_back
 #define fi first
 #define se second
-//////Namespace
-using namespace std;
 //////Typedefs
 typedef long long ll;
 typedef pair<int, int> ii;
@@ -31,14 +43,10 @@ typedef map<int, int> mii;
 typedef vector<ll> vi;
 
 
-void solve(){
-
-}
+using namespace std;
 
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
 
-
-	solve();
 }

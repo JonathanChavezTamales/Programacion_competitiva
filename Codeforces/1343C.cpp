@@ -25,7 +25,45 @@
 
 using namespace std;
 
+void solve(){
+	int n;
+	cin>>n;
+	if(n ==1){
+		int x;
+		cin>>x;
+		cout<<x<<endl;
+		return;
+	}
+	vector<int> a(n);
+	vector<int> r;
+	long long int suma = 0;
+	cin>>a[0];
+	int maxi = a[0];
+	bool s = a[0] < 0? false : true;
+	for(int i=1; i<n; i++){
+		cin>>a[i];
+		if(a[i] < 0){
+			if(s){ suma+= maxi; r.push_back(maxi); maxi = a[i];}
+			s = false;	
+		}
+		else{
+			if(!s){ suma+=maxi; r.push_back(maxi); maxi = a[i];}
+			s = true;
+		}
+		maxi = max(maxi, a[i]);
+	}
+	suma += maxi;
+	r.push_back(maxi);
+
+	cout<<suma<<endl;
+}
+
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
+	int t;
+	cin>>t;
+	while(t--){
+		solve();
+	}
 }

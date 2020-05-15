@@ -32,13 +32,66 @@ typedef pair<int, int> ii;
 typedef map<int, int> mii;
 typedef vector<ll> vi;
 
+bool nor(int x, int max){
+	if(x<1) return false;
+	if(x>max) return false;
+	return true;
+}
+
+void finddfs(vector<vector<int> > &g){
+	for(int k=1; k<g.size(); k++){
+		stack<int> stk;
+		vector<bool> visited(g.size());
+		stk.push(k);
+		vector<int> res;
+		bool pos = true;
+		while(!stk.empty()){
+			int c = stk.top();
+			stk.pop();
+			if(!visited[c]){
+				res.push_back(c);
+				if(res.size() >= 2 && abs(res[res.size()-2]-c) < 2){
+					pos = false;
+					break;	
+				}
+				visited[c] = true;	
+				for(int i=g[c].size()-1; i>=0; i--){
+					if(!visited[g[c][i]]){
+						stk.push(g[c][i]);
+					}
+				}
+			}
+		}
+		if(g.size()-1 == res.size() && pos){
+			for(int i=0; i<res.size(); i++){
+				cout<<res[i]<<" ";
+			}
+			cout<<endl;
+			return;	
+		}	
+	}
+	cout<<-1<<endl;
+}
 
 void solve(){
+	int n;
+	cin>>n;
+	vector<vector<int> > a(n+1);
+	for(int i=1; i<=n; i++){
+		for(int j=-4; j<=4; j++){
+			if(nor(i+j, n) && (j>=2 || j<=-2)){
+				a[i].push_back(i+j);
+			}
+		}
+	}
 
+	finddfs(a);
 }
 
 int main(){
 	optimizar_io;
-
+	int t;
+	cin>>t;
+	while(t--)
 	solve();
 }

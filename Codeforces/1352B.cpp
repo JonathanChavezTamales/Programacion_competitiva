@@ -18,10 +18,12 @@
 #define MOD(n,k) ( ( ((n) % (k)) + (k) ) % (k))
 #define forn(i,n) for (int i = 0; i < n; i++)
 #define forr(i,a,b) for (int i = a; i <= b; i++)
+#define optimizar_io ios_base::sync_with_stdio(0);cin.tie(0);
 //////Abreviaciones
 #define pb push_back
 #define fi first
 #define se second
+#define mp make_pair
 //////Namespace
 using namespace std;
 //////Typedefs
@@ -32,13 +34,33 @@ typedef vector<ll> vi;
 
 
 void solve(){
-
+	int n, k;
+	cin>>n>>k;
+	if(n%2 == 0 && n/2 >= k){
+		cout<<"YES"<<endl;
+		n /= 2;
+		for(int i=0; i<k-1; i++){
+			cout<<2<<" ";
+		}	
+		cout<<2*(n-k+1)<<endl;
+	}
+	else if((n-k) >= 0 && (n-k) % 2 == 0){
+		cout<<"YES"<<endl;
+		n = (n-k)/2;
+		for(int i=0; i<k-1; i++){
+			cout<<1<<" ";
+		}
+		cout<<2*n+1<<endl;
+	}
+	else{
+		cout<<"NO"<<endl;
+	}
 }
 
 int main(){
-	ios::sync_with_stdio(false);
-	cin.tie(0);
-
-
+	optimizar_io;
+	int t;
+	cin>>t;
+	while(t--)
 	solve();
 }

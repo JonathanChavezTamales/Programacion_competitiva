@@ -25,43 +25,29 @@
 
 using namespace std;
 
+void solve(long long int n){
+	cerr<<"solving"<<endl;
+	long long int sum =0;
+	for(int i=1; i<= sqrt(n) +1 && i<n; i++){
+		if(n%i==0) sum++;
+	}
+	sum++;
+	if(sum&1){
+		cout<<"yes"<<endl;
+	}
+	else cout<<"no"<<endl;
+}
+
 int main(){
 	ios::sync_with_stdio(false);
 	cin.tie(0);
-	int t;
-	cin>>t;
-	while(t--){
-		vector<string> a(9);
-		for(int i=0; i<9; i++){
-			
-				cin>>a[i];
-		
-		}
-		
-		for(int i=1;i<=3;i++){
-			unordered_set<char> s;
-			s.insert(a[i*3-3][i*3-3]);
-			s.insert(a[i*3-1][i*3-1]);
-			s.insert(a[i*3-2][i*3-2]);
-			debug(a[i*3-2][i*3-2]);
-			debug(a[i*3-1][i*3-1]);
-			swap(a[i*3-1][i*3-1], a[i*3-2][i*3-2]);
-			for(int i=1; i<10; i++){
-				if(s.find(i + '0') == s.end()){
-					cout<<i<<" not found "<<endl;
-					a[i*3-3][i*3-3] = i+'0';
-					break;	
-				}
-			}
-		}	
-
-		for(int i=0; i<9; i++){
-			for(int j=0; j<9; j++){
-				cout<<a[i][j];
-			}
-			cout<<endl;
-		}
-
-
+	long long int t;
+	while(true){
+		cerr<<"sr"<<endl;
+		debug(t);
+		cin>>t;
+		cerr<<"fr"<<t<<endl;
+		if(t) solve(t);
+		else return 0;
 	}
 }

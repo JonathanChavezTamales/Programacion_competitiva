@@ -5,6 +5,7 @@
 #define debug(x) cerr<<"["<<#x<<"]: "<<x<<endl;
 #define debuga(a) for(auto it=a.begin(); it!=a.end(); ++it) {cerr<<*it<<",";} cerr<<endl;
 #define debugm(a) for(auto it=a.begin(); it!=a.end(); ++it) {cerr<<it->first<<","<<it->second<<endl;} cerr<<endl;
+#define debugp(a) cerr<<"("<<a.first<<", "<<a.second<<")"<<endl;
 #else
 #include <bits/stdc++.h>
 #define debug(x) 42
@@ -34,7 +35,51 @@ typedef vector<ll> vi;
 
 
 void solve(){
+	int n;
+	cin>>n;
+	vector<vector<bool> > m(1000, vector<bool>(1000));
+	int maxi = -1;
+	forn(i, n){
+		int x, y;
+		cin>>x>>y;
+		maxi = max(maxi, max(x, y));
+		m[x-1][y-1] = true;
+	}	
+	int res = 0;
+	for(int i=0; i<maxi; i++){
+		int p = 0;
+		for(int j=i, k=0; j>=0; j--, k++){
+			if(m[j][k]) p ++;
+		}
+		res += p*(p-1)/2;
+	}
+	for(int i=maxi-1; i>0; i--){
+		int p = 0;
+		for(int j=maxi-1, k=maxi-i; k<maxi; j--, k++){
+			if(m[j][k]) p++;
+		}
+		res+= p*(p-1)/2;
+	}
 
+	cerr<<" == ="<<endl;
+
+	for(int i=0; i<maxi; i++){
+		int p = 0;
+		for(int j=0, k=maxi-i-1; j<=i; j++, k++){
+			if(m[j][k]) p ++;
+		}
+		res += p*(p-1)/2;
+	}
+	for(int i=maxi-1; i>0; i--){
+		int p = 0;	
+		for(int j=maxi-1, k=i-1; k>=0; j--, k--){
+			if(m[j][k]) p ++;
+		}
+		res+= p*(p-1)/2;
+	}
+
+
+	cout<<res<<endl;
 }
 
 int main(){
