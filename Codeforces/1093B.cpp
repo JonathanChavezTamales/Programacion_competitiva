@@ -35,23 +35,24 @@ typedef vector<ll> vi;
 
 
 void solve(){
-	int n, h, m;
-	cin>>n>>h>>m;
-	vector<int> sp(n, h);
-	long long int rs = 0;
-	while(m--){
-		int l, r, x;
-		cin>>l>>r>>x;
-		for(int i=l-1; i<=r-1; i++){
-			sp[i] = min(sp[i], x);
+	int t;
+	cin>>t;
+	while(t--){
+		string s;
+		cin>>s;
+		map<char, int> mapa;
+		for(int i=0; i<s.size(); i++) mapa[s[i]]++;
+		if(mapa.size() == 1) cout <<-1<<endl;
+		else{
+			string ns = "";
+			for(auto e : mapa){
+				for(int i=0; i<e.second; i++){
+					ns += e.first;
+				}
+			}
+			cout<<ns<<endl;
 		}
-		
 	}
-	for(int i=0; i<sp.size(); i++){
-		rs += sp[i]*sp[i];
-		debug(sp[i]);
-	}
-	cout<<rs<<endl;
 }
 
 int main(){

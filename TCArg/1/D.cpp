@@ -1,6 +1,19 @@
 #ifdef LOCAL
 //////Librerias
-#include "libs.h"
+#include <iostream>
+#include <vector>
+#include <set>
+#include <unordered_set>
+#include <map>
+#include <unordered_map>
+#include <stack>
+#include <queue>
+#include <string>
+#include <cmath>
+#include <sstream>
+#include <climits>
+#include <bitset>
+#include <numeric>
 //////Debug
 #define debug(x) cerr<<"["<<#x<<"]: "<<x<<endl;
 #define debuga(a) for(auto it=a.begin(); it!=a.end(); ++it) {cerr<<*it<<",";} cerr<<endl;
@@ -8,50 +21,45 @@
 #else
 #include <bits/stdc++.h>
 #define debug(x) 42
-#define debuga(a) 42
-#define debugm(a) 42
+#define debug_c(a) 42
 #endif
 //////Constantes
-#define EPS 0.0000001
-#define CHP 1000000007
 #define endl '\n'
 //////Funciones
 #define MOD(n,k) ( ( ((n) % (k)) + (k) ) % (k))
-#define forn(i,n) for (int i = 0; i < n; i++)
-#define forr(i,a,b) for (int i = a; i <= b; i++)
 #define optimizar_io ios_base::sync_with_stdio(0);cin.tie(0);
 //////Abreviaciones
 #define pb push_back
 #define fi first
 #define se second
 #define mp make_pair
+#define ll long long
 //////Namespace
 using namespace std;
-//////Typedefs
-typedef long long ll;
-typedef pair<int, int> ii;
-typedef map<int, int> mii;
-typedef vector<ll> vi;
-
 
 void solve(){
-	int n, h, m;
-	cin>>n>>h>>m;
-	vector<int> sp(n, h);
-	long long int rs = 0;
-	while(m--){
-		int l, r, x;
-		cin>>l>>r>>x;
-		for(int i=l-1; i<=r-1; i++){
-			sp[i] = min(sp[i], x);
+	int n;
+	int a, b;
+	cin>>n>>a>>b;
+	int l = 0, r = 0;
+	for(int i=0; i<n; i++){
+		int x;
+		cin>>x;
+		if(x == 1){
+			if(a>0) a--;
+			else if(b > 0){b--; r++;}
+			else if(r > 0){r--;}
+			else{
+				l++;
+			}
+		} else{
+			if(b > 0) b--;
+			else{
+				l+=2;
+			}
 		}
-		
 	}
-	for(int i=0; i<sp.size(); i++){
-		rs += sp[i]*sp[i];
-		debug(sp[i]);
-	}
-	cout<<rs<<endl;
+	cout<<l<<endl;
 }
 
 int main(){

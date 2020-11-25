@@ -28,39 +28,40 @@
 
 using namespace std;
 
-int minidx(vector<int> &a, int l, int r){
-	int minidx = l;
-	for(int i=l; i<=r; i++){
-		minidx = a[minidx] >= a[i] ? i : minidx;
-	}
-	return minidx;
-}
-
 void solve(){
-	int t;
-	cin>>t;
-	while(t--){
-		int n;
-		cin>>n;
-		vector<int> a(n);
-		for(int i=0; i<n; i++){
-			cin>>a[i];
-		}
-		int begin = 0;
-		while(begin < n-1){
-			int right = minidx(a, begin, n-1);
-			for(int i=right; i>begin; i--){
-				int c = a[i];
-				a[i] = a[i-1];
-				a[i-1] = c;
+	int n;
+	cin>>n;
+	bool p = true;
+	vector<vector<int> > M(11, vector<int>(11));
+	for(int i=0; i<n; i++){
+		int d, l, r, c;
+		cin>>d>>l>>r>>c;
+		if(!d){ // c
+			if(c+l-1 > 10) p=false;
+			else{
+				for(int i=c; i<c+l; i++){
+					debug(r);
+					debug(i);
+					M[r][i]++;
+					if(M[r][i] > 1) p=false;
+				}
 			}
-			begin = right == begin ? right+1 : right;
 		}
-		for(int i : a){
-			cout<<i<<" ";
+		else{ // r
+			if(r+l-1 > 10) p=false;
+			else{
+				for(int i=r; i<r+l; i++){
+					debug(i);
+					debug(c);
+					M[i][c]++;
+					if(M[i][c] > 1) p =false;
+				}
+			}
 		}
-		cout<<endl;
 	}
+	
+	if(p) cout<<"Y"<<endl;
+	else cout<<"N"<<endl;
 }
 
 int main(){

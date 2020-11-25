@@ -1,42 +1,66 @@
-#include <iostream>
-#include <unordered_map>
-#include <unordered_set>
-#include <cmath>
-
+#ifdef LOCAL
+//////Librerias
+#include "libs.h"
+//////Debug
+#define debug(x) cerr<<"["<<#x<<"]: "<<x<<endl;
+#define debuga(a) for(auto it=a.begin(); it!=a.end(); ++it) {cerr<<*it<<",";} cerr<<endl;
+#define debugm(a) for(auto it=a.begin(); it!=a.end(); ++it) {cerr<<it->first<<","<<it->second<<endl;} cerr<<endl;
+#else
+#include <bits/stdc++.h>
+#define debug(x) 42
+#define debuga(a) 42
+#define debugm(a) 42
+#endif
+//////Constantes
+#define EPS 0.0000001
+#define CHP 1000000007
+#define endl '\n'
+//////Funciones
+#define MOD(n,k) ( ( ((n) % (k)) + (k) ) % (k))
+#define forn(i,n) for (int i = 0; i < n; i++)
+#define forr(i,a,b) for (int i = a; i <= b; i++)
+#define optimizar_io ios_base::sync_with_stdio(0);cin.tie(0);
+//////Abreviaciones
+#define pb push_back
+#define fi first
+#define se second
+#define mp make_pair
+//////Namespace
 using namespace std;
+//////Typedefs
+typedef long long ll;
+typedef pair<int, int> ii;
+typedef map<int, int> mii;
+typedef vector<ll> vi;
 
-int main(){
+
+void solve(){
 	int n;
 	cin>>n;
-	int arr[n];
-	unordered_map<int, int> m;
-	unordered_set<int> s;
+	vector<int> a(n);
 	for(int i=0; i<n; i++){
-		cin>>arr[i];
-		if(arr[i] == 1){
-			m[1] = 1;
-		}
-		else if(m.find(arr[i]) == m.end()) {
-			bool found = false;
-			for(int j=2; j<sqrt(arr[i])+1 && !found; j++){
-				if(arr[i]%j == 0){
-					cerr<<"for"<<arr[i]<<"insert"<<j<<endl;
-					m[arr[i]] = j;
-					found = true;
-					s.insert(j);
-				}
-			}
-			if(!found){
-				m[arr[i]] = arr[i];
-				cerr<<"inserted prime"<<arr[i]<<endl;
-				s.insert(arr[i]);
+		cin>>a[i];
+	}
+	sort(a.begin(), a.end());
+	set<int> cs;
+	cs.insert(a[0]);
+	for(int i=1; i<n; i++){
+		debug(a[i]);
+		bool f = false;
+		for(auto e : cs){
+			if(a[i]%e==0){
+				f=true;
+				break;
 			}
 		}
+		if(!f) cs.insert(a[i]);
 	}
-	for(auto it = s.begin(); it != s.end(); it++){
-		cerr<<*it<<endl;
-	}
-	
-	cout<<s.size()<<endl;
+	debuga(cs);
+	cout<<cs.size()<<endl;
+}
 
+int main(){
+	optimizar_io;
+
+	solve();
 }

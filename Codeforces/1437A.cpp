@@ -8,8 +8,7 @@
 #else
 #include <bits/stdc++.h>
 #define debug(x) 42
-#define debuga(a) 42
-#define debugm(a) 42
+#define debug_c(a) 42
 #endif
 //////Constantes
 #define EPS 0.0000001
@@ -33,29 +32,39 @@ typedef pair<int, int> ii;
 typedef map<int, int> mii;
 typedef vector<ll> vi;
 
+bool divisors(long long int l, long long int r, long long int x){
+	for(int i=l; i<=r; i++){ 
+		if(x%i == 0) return true;
+	}
+	return false;
+}
 
 void solve(){
-	int n, h, m;
-	cin>>n>>h>>m;
-	vector<int> sp(n, h);
-	long long int rs = 0;
-	while(m--){
-		int l, r, x;
-		cin>>l>>r>>x;
-		for(int i=l-1; i<=r-1; i++){
-			sp[i] = min(sp[i], x);
+	int t;
+	cin>>t;
+	while(t--){
+		int a, b;
+		cin>>a>>b;
+		map<int, int> divs;
+		for(int i=a; i<=b; i++){
+			for(int j=1; j<=i; j++){
+				if(i%j!=0) divs[j]++;
+			}
 		}
-		
+		bool fl = false;
+		for(auto it:divs){
+			if(it.second == b-a+1){
+				fl = true;
+				break;
+			}
+		}
+		if(b+1 <= 2*a-1 || fl) cout<<"YES"<<endl;
+		else cout<<"NO"<<endl;
 	}
-	for(int i=0; i<sp.size(); i++){
-		rs += sp[i]*sp[i];
-		debug(sp[i]);
-	}
-	cout<<rs<<endl;
 }
 
 int main(){
 	optimizar_io;
-
+	
 	solve();
 }

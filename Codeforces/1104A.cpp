@@ -1,27 +1,49 @@
-#include<iostream>
-#include<vector>
-
+#ifdef LOCAL
+//////Librerias
+#include "libs.h"
+//////Debug
+#define debug(x) cerr<<"["<<#x<<"]: "<<x<<endl;
+#define debuga(a) for(auto it=a.begin(); it!=a.end(); ++it) {cerr<<*it<<",";} cerr<<endl;
+#define debugm(a) for(auto it=a.begin(); it!=a.end(); ++it) {cerr<<it->first<<","<<it->second<<endl;} cerr<<endl;
+#else
+#include <bits/stdc++.h>
+#define debug(x) 42
+#define debug_c(a) 42
+#endif
+//////Constantes
+#define EPS 0.0000001
+#define CHP 1000000007
+#define endl '\n'
+//////Funciones
+#define MOD(n,k) ( ( ((n) % (k)) + (k) ) % (k))
+#define forn(i,n) for (int i = 0; i < n; i++)
+#define forr(i,a,b) for (int i = a; i <= b; i++)
+#define optimizar_io ios_base::sync_with_stdio(0);cin.tie(0);
+//////Abreviaciones
+#define pb push_back
+#define fi first
+#define se second
+#define mp make_pair
+//////Namespace
 using namespace std;
+//////Typedefs
+typedef long long ll;
+typedef pair<int, int> ii;
+typedef map<int, int> mii;
+typedef vector<ll> vi;
 
-int main(){
+
+void solve(){
 	int n;
 	cin>>n;
-	if(n==1){
-	cout<<n<<endl<<n;
-	return 0;
+	cout<<n<<endl;
+	for(int i=0; i<n; i++){
+		cout<<1<<" ";
 	}
-	int d = 2;
-	while(n/d > 10){
-		d++;
-	}
-	cout<<(n%d!=0 ? d+1 : d)<<endl;
-	if(d*10== n)
-		d = n;
-	int res = 0;
-	for(int i=0; i<d; i++){
-		if(n%d!=0 && i==d-1)
-			cout<<n/d + 1<<" ";
-		else
-			cout<<n/d<<" ";
-	}
+}
+
+int main(){
+	optimizar_io;
+
+	solve();
 }

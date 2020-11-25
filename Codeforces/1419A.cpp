@@ -28,36 +28,38 @@
 
 using namespace std;
 
-int minidx(vector<int> &a, int l, int r){
-	int minidx = l;
-	for(int i=l; i<=r; i++){
-		minidx = a[minidx] >= a[i] ? i : minidx;
-	}
-	return minidx;
-}
-
 void solve(){
 	int t;
 	cin>>t;
 	while(t--){
-		int n;
-		cin>>n;
-		vector<int> a(n);
-		for(int i=0; i<n; i++){
-			cin>>a[i];
-		}
-		int begin = 0;
-		while(begin < n-1){
-			int right = minidx(a, begin, n-1);
-			for(int i=right; i>begin; i--){
-				int c = a[i];
-				a[i] = a[i-1];
-				a[i-1] = c;
+		int d;
+		cin>>d;
+		string s;
+		cin>>s;
+		pair<int, int> r = {0, 0};
+		pair<int, int> b = {0, 0};
+		for(int i=0; i<s.size(); i++){
+			debug(s[i]-'0');
+			if(i%2==0){
+				if((s[i]-'0')%2 == 0) r.first++;
+				else r.second++;	
 			}
-			begin = right == begin ? right+1 : right;
+			else{
+				if((s[i]-'0')%2 == 0) b.first++;
+				else b.second++;
+			}
+		}	
+		debug(r.first);
+		debug(r.second);
+		debug(b.first); 
+		debug(b.second);
+		if(s.size()%2==0){
+			if(b.first) cout<<2;
+			else cout<<1;
 		}
-		for(int i : a){
-			cout<<i<<" ";
+		else{
+			if(r.second) cout<<1;
+			else cout<<2;
 		}
 		cout<<endl;
 	}

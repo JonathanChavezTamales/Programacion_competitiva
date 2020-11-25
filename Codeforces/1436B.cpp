@@ -25,41 +25,48 @@
 #endif
 #define endl '\n'
 #define optimizar_io ios_base::sync_with_stdio(0);cin.tie(0);
+#define MAXN 100000
 
 using namespace std;
 
-int minidx(vector<int> &a, int l, int r){
-	int minidx = l;
-	for(int i=l; i<=r; i++){
-		minidx = a[minidx] >= a[i] ? i : minidx;
+vector<bool> criba(MAXN+1, 1);
+
+void me(){
+	criba[0] = criba[1] = false;
+	for(int i=2; i*i<=MAXN; i++){
+		if(criba[i]){
+			for(int j=i*i; j<=MAXN; j+=i){
+				criba[j] = false;
+			}
+		}
 	}
-	return minidx;
 }
 
 void solve(){
 	int t;
 	cin>>t;
+	me();
 	while(t--){
 		int n;
 		cin>>n;
-		vector<int> a(n);
-		for(int i=0; i<n; i++){
-			cin>>a[i];
+		if(n==1){
+			cout<<1<<endl;
+		}	
+		else if(n == 2){
+			cout<<"1 1\n1 1"<<endl;
 		}
-		int begin = 0;
-		while(begin < n-1){
-			int right = minidx(a, begin, n-1);
-			for(int i=right; i>begin; i--){
-				int c = a[i];
-				a[i] = a[i-1];
-				a[i-1] = c;
+		else{
+			for(int i=0; i<n; i++){
+				for(int j=0; j<n; j++){
+					if(j==0 && i==n-1) cout<<1<<" ";
+					else if(j==i || j==i+1){
+						cout<<1<<" ";
+					}
+					else cout<<0<<" ";
+				}
+				cout<<endl;
 			}
-			begin = right == begin ? right+1 : right;
 		}
-		for(int i : a){
-			cout<<i<<" ";
-		}
-		cout<<endl;
 	}
 }
 

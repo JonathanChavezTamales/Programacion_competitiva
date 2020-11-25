@@ -28,39 +28,12 @@
 
 using namespace std;
 
-int minidx(vector<int> &a, int l, int r){
-	int minidx = l;
-	for(int i=l; i<=r; i++){
-		minidx = a[minidx] >= a[i] ? i : minidx;
-	}
-	return minidx;
-}
-
 void solve(){
-	int t;
-	cin>>t;
-	while(t--){
-		int n;
-		cin>>n;
-		vector<int> a(n);
-		for(int i=0; i<n; i++){
-			cin>>a[i];
-		}
-		int begin = 0;
-		while(begin < n-1){
-			int right = minidx(a, begin, n-1);
-			for(int i=right; i>begin; i--){
-				int c = a[i];
-				a[i] = a[i-1];
-				a[i-1] = c;
-			}
-			begin = right == begin ? right+1 : right;
-		}
-		for(int i : a){
-			cout<<i<<" ";
-		}
-		cout<<endl;
-	}
+	int n, a , b;
+	cin>>n>>a>>b;
+	long long int sum = (b*(b+1)/2) - (a*(a-1)/2);
+	double avg = sum*1.0/(b-a+1);
+	cout<<n*1.0/avg<<endl;
 }
 
 int main(){

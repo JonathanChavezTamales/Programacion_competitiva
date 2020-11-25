@@ -35,23 +35,39 @@ typedef vector<ll> vi;
 
 
 void solve(){
-	int n, h, m;
-	cin>>n>>h>>m;
-	vector<int> sp(n, h);
-	long long int rs = 0;
-	while(m--){
-		int l, r, x;
-		cin>>l>>r>>x;
-		for(int i=l-1; i<=r-1; i++){
-			sp[i] = min(sp[i], x);
-		}
-		
+	map<int, long long int> mins;
+	unordered_map<long long int, vector<long long int> > adj;
+	int n, k;
+	cin>>n>>k;
+	vector<long long int> a(n+1);
+	for(int i=0; i<n; i++){
+		int x; cin>>x;
+		mins[x]++;	
+		a[i+1] = x;
 	}
-	for(int i=0; i<sp.size(); i++){
-		rs += sp[i]*sp[i];
-		debug(sp[i]);
+	for(int i=0; i<k; i++){
+		int x, y;
+		cin>>x>>y;
+		adj[x].push_back(a[y]);
+		adj[y].push_back(a[x]);
 	}
-	cout<<rs<<endl;
+	long long int ac = 0;
+	for(auto e:mins){
+		mins[e.first] = ac;
+		ac += e.second;
+	}
+	long long int total = 0;
+	for(int i=1; i<=n; i++){
+		int tot = mins[a[i]];
+		sort(adj[i].begin(), adj[i].end());
+
+		auto lb = lower_bound(adj[i].begin(), adj[i].end(), a[i]);
+		int diff = lb-adj[i].begin();
+		diff = diff >= adj[i].size()? adj[i].size() : diff;
+			
+		cout<<tot-diff<<" ";
+	}
+	cout<<endl;
 }
 
 int main(){

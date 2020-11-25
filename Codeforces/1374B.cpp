@@ -28,38 +28,58 @@
 
 using namespace std;
 
-int minidx(vector<int> &a, int l, int r){
-	int minidx = l;
-	for(int i=l; i<=r; i++){
-		minidx = a[minidx] >= a[i] ? i : minidx;
+map<int, int> factors(int n){
+	map<int, int> facs;
+
+	for(int i=2; i <= sqrt(n); i++){
+		while(n%i == 0){
+			n /= i;
+			facs[i]++;
+		}
 	}
-	return minidx;
+
+	if(n>1){
+		facs[n]++;
+	}
+	return facs;
 }
 
 void solve(){
 	int t;
 	cin>>t;
+	map<int, map<int, int> > tfacs;
 	while(t--){
 		int n;
 		cin>>n;
-		vector<int> a(n);
-		for(int i=0; i<n; i++){
-			cin>>a[i];
+		map<int, int> facs;
+		if(tfacs.find(n) == tfacs.end()) tfacs[n] = factors(n);
+		facs = tfacs[n];
+		
+		debugm(facs);
+		int fsize = facs.size();
+		if(n==1) cout<<0<<endl;
+		else if(facs.size() > 2){
+			cout<<-1<<endl;
 		}
-		int begin = 0;
-		while(begin < n-1){
-			int right = minidx(a, begin, n-1);
-			for(int i=right; i>begin; i--){
-				int c = a[i];
-				a[i] = a[i-1];
-				a[i-1] = c;
+		else if(facs[2] > 0 || facs[3] > 0){
+			if((facs[2] == 0 || facs[3] == 0) && fsize == 2){
+					cout<<-1<<endl;
+					continue;
 			}
-			begin = right == begin ? right+1 : right;
+			int tres = facs[3];
+			int dos = facs[2];
+			debug(dos);
+			debug(tres);
+			if(dos <= tres){
+				cout<<2*tres-dos<<endl;
+			}
+			else{
+				cout<<-1<<endl;
+			}
 		}
-		for(int i : a){
-			cout<<i<<" ";
+		else{
+			cout<<-1<<endl;
 		}
-		cout<<endl;
 	}
 }
 

@@ -8,8 +8,7 @@
 #else
 #include <bits/stdc++.h>
 #define debug(x) 42
-#define debuga(a) 42
-#define debugm(a) 42
+#define debug_c(a) 42
 #endif
 //////Constantes
 #define EPS 0.0000001
@@ -35,23 +34,27 @@ typedef vector<ll> vi;
 
 
 void solve(){
-	int n, h, m;
-	cin>>n>>h>>m;
-	vector<int> sp(n, h);
-	long long int rs = 0;
-	while(m--){
-		int l, r, x;
-		cin>>l>>r>>x;
-		for(int i=l-1; i<=r-1; i++){
-			sp[i] = min(sp[i], x);
+	int t;
+	cin>>t;
+	while(t--){
+		int n, a, b;
+		vector<int> arr(n);
+		cin>>n>>a>>b;
+		if((b-a)%(n-2)==0){
+			arr[0] = a;
+			arr[n-1] = b;
+			for(int i=1; i<n-1; i++){
+				arr[i] = a + i*((b-a)/(n-1));
+			}
 		}
-		
+		else if((b-a) < n-1){
+			int ini = max(b-n+1, a);
+			for(int i=0; i<arr.size(); i++){
+				arr[i] = ini;
+				ini++;
+			}
+		}
 	}
-	for(int i=0; i<sp.size(); i++){
-		rs += sp[i]*sp[i];
-		debug(sp[i]);
-	}
-	cout<<rs<<endl;
 }
 
 int main(){

@@ -1,6 +1,19 @@
 #ifdef LOCAL
 //////Librerias
-#include "libs.h"
+#include <iostream>
+#include <vector>
+#include <set>
+#include <unordered_set>
+#include <map>
+#include <unordered_map>
+#include <stack>
+#include <queue>
+#include <string>
+#include <cmath>
+#include <sstream>
+#include <climits>
+#include <bitset>
+#include <numeric>
 //////Debug
 #define debug(x) cerr<<"["<<#x<<"]: "<<x<<endl;
 #define debuga(a) for(auto it=a.begin(); it!=a.end(); ++it) {cerr<<*it<<",";} cerr<<endl;
@@ -11,44 +24,46 @@
 #define debug_c(a) 42
 #endif
 //////Constantes
-#define EPS 0.0000001
-#define CHP 1000000007
 #define endl '\n'
 //////Funciones
 #define MOD(n,k) ( ( ((n) % (k)) + (k) ) % (k))
-#define forn(i,n) for (int i = 0; i < n; i++)
-#define forr(i,a,b) for (int i = a; i <= b; i++)
 #define optimizar_io ios_base::sync_with_stdio(0);cin.tie(0);
 //////Abreviaciones
 #define pb push_back
 #define fi first
 #define se second
 #define mp make_pair
+#define ll long long
 //////Namespace
 using namespace std;
-//////Typedefs
-typedef long long ll;
-typedef pair<int, int> ii;
-typedef map<int, int> mii;
-typedef vector<ll> vi;
-
 
 void solve(){
 	int n;
 	cin>>n;
-	vector<int> b(n);
-	long long int sumt =0;
+	vector<int> a(n);
+	int sum =0;
 	for(int i=0; i<n; i++){
-		cin>>b[i];
-		sumt += b[i];
+		cin>>a[i];
+		sum+=a[i];
 	}
-	sort(b.begin(), b.end(), greater<int>());
-	int m;
-	cin>>m;
-	vector<int> q(m);
-	for(int i=0; i<m; i++){
-		cin>>q[i];
-		cout<<sumt-b[q[i]-1]<<endl;
+	double mit = ((double) sum) / 2;
+	int nsum =0;
+	int ct = 0;
+	int last =0;
+	for(int i=0; i<n; i++){
+		nsum+=a[i];
+		ct++;
+		if(mit<nsum){
+			debug(ct);
+			debug(nsum);
+			if(nsum-a[i] > sum-nsum){
+				cout<<ct-1<<" "<<n-ct+1<<endl;
+			} else{
+				cout<<ct<<" "<<n-ct<<endl;
+			}
+			return;
+		}
+		last = a[i];
 	}
 }
 

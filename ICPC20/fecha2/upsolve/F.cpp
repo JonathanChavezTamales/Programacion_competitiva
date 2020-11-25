@@ -28,38 +28,49 @@
 
 using namespace std;
 
-int minidx(vector<int> &a, int l, int r){
-	int minidx = l;
-	for(int i=l; i<=r; i++){
-		minidx = a[minidx] >= a[i] ? i : minidx;
-	}
-	return minidx;
-}
-
 void solve(){
-	int t;
-	cin>>t;
-	while(t--){
-		int n;
-		cin>>n;
-		vector<int> a(n);
-		for(int i=0; i<n; i++){
-			cin>>a[i];
+	string s;
+	cin>>s;
+	int gl = 0;
+	int gr = 0;
+	int pl = 0;
+	int pr = 0;
+	bool servesleft = true;
+	bool gameover = false; 
+	for(int i=0; i<s.size(); i++){
+		if(s[i] == 'S'){
+			if(servesleft) pl++;
+			else pr++;
 		}
-		int begin = 0;
-		while(begin < n-1){
-			int right = minidx(a, begin, n-1);
-			for(int i=right; i>begin; i--){
-				int c = a[i];
-				a[i] = a[i-1];
-				a[i-1] = c;
+		else if(s[i] == 'R'){
+			if(servesleft) pr++;
+			else pl++;
+			servesleft = !servesleft;
+		}
+		else{
+			if(gameover){
+				if(gl > gr) cout<<gl<<" (winner) - "<<gr<<endl;
+				else cout<<gl<<" - "<<gr<<" (winner)"<<endl;
+ 
 			}
-			begin = right == begin ? right+1 : right;
+			else if(servesleft){
+				cout<<gl<<" ("<<pl<<"*) - "<<gr<<" ("<<pr<<")"<<endl;
+			}
+			else{
+				cout<<gl<<" ("<<pl<<") - "<<gr<<" ("<<pr<<"*)"<<endl;
+			}
 		}
-		for(int i : a){
-			cout<<i<<" ";
+
+		int maxi = max(pl, pr);
+		int mini = min(pl, pr);
+		if((maxi >= 5 && maxi-mini >=2) || maxi == 10){
+			if(pl >pr) gl++;
+			else gr++;
+			pl = 0;
+			pr = 0;
 		}
-		cout<<endl;
+
+		if(gl == 2 || gr == 2) gameover = true;
 	}
 }
 

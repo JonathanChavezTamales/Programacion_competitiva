@@ -8,7 +8,8 @@
 #else
 #include <bits/stdc++.h>
 #define debug(x) 42
-#define debug_c(a) 42
+#define debuga(a) 42
+#define debugm(a) 42
 #endif
 //////Constantes
 #define EPS 0.0000001

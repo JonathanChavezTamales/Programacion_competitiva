@@ -8,8 +8,7 @@
 #else
 #include <bits/stdc++.h>
 #define debug(x) 42
-#define debuga(a) 42
-#define debugm(a) 42
+#define debug_c(a) 42
 #endif
 //////Constantes
 #define EPS 0.0000001
@@ -33,25 +32,51 @@ typedef pair<int, int> ii;
 typedef map<int, int> mii;
 typedef vector<ll> vi;
 
+int calc(string s){
+	int c=0;
+	for(char x:s){
+		c += x-'0';
+	}
+	return c;
+}
 
 void solve(){
-	int n, h, m;
-	cin>>n>>h>>m;
-	vector<int> sp(n, h);
-	long long int rs = 0;
-	while(m--){
-		int l, r, x;
-		cin>>l>>r>>x;
-		for(int i=l-1; i<=r-1; i++){
-			sp[i] = min(sp[i], x);
+	int t;
+	cin>>t;
+	while(t--){
+		string n;
+		int s;
+		cin>>n>>s;
+		long long ncp = stoll(n, nullptr, 10);
+		n = "0"+n;
+		bool den = false;
+	
+		for(int i=n.size()-1; i>0; i--){
+			debug(n);
+			int sum = calc(n);
+			if(sum <= s){
+				ll cur = stoll(n, nullptr, 10);
+				cout<<cur-ncp<<endl;
+				den = true;
+				break;
+			}
+			else{
+				n[i] = '0';
+				n[i-1] += 1;
+				for(int j=1; i-j>=0; j++){
+					if(n[i-j] == ':'){
+						n[i-j] = '0';
+						n[i-j-1] += 1;
+					}
+					else break;
+				}
+			}	
 		}
-		
+		if(!den){
+			ll cur = stoll(n, nullptr, 10);
+			cout<<cur-ncp<<endl;
+		}
 	}
-	for(int i=0; i<sp.size(); i++){
-		rs += sp[i]*sp[i];
-		debug(sp[i]);
-	}
-	cout<<rs<<endl;
 }
 
 int main(){

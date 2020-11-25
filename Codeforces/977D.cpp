@@ -35,23 +35,32 @@ typedef vector<ll> vi;
 
 
 void solve(){
-	int n, h, m;
-	cin>>n>>h>>m;
-	vector<int> sp(n, h);
-	long long int rs = 0;
-	while(m--){
-		int l, r, x;
-		cin>>l>>r>>x;
-		for(int i=l-1; i<=r-1; i++){
-			sp[i] = min(sp[i], x);
-		}
-		
+	int n;
+	cin>>n;
+	unordered_set<long long int> s;
+	vector<long long int> res(n);
+	long long int p = 0;
+	long long int p2 = 0;
+	for(int i=0; i<n; i++){
+		long long int x;
+		cin>>x;
+		s.insert(x);
 	}
-	for(int i=0; i<sp.size(); i++){
-		rs += sp[i]*sp[i];
-		debug(sp[i]);
+	for(long long int i : s){
+		if(i%3 != 0 && s.find(i*2) == s.end()) p = i;
+		if(i%3 != 0 || s.find(i*2) == s.end()) p2 = i;
 	}
-	cout<<rs<<endl;
+	p = p == 0? p2:p;
+	res[n-1] = p;
+	s.erase(p);
+	for(int i=n-2; i>=0; i--){
+		if(s.find(p*3) != s.end()) p = p*3;
+		else if(p%2==0 && s.find(p/2) != s.end()) p = p/2;
+		res[i] = p;
+		s.erase(p);
+	}
+	for(long long int i : res) cout<<i<<" ";
+	cout<<endl;
 }
 
 int main(){

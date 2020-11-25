@@ -28,39 +28,35 @@
 
 using namespace std;
 
-int minidx(vector<int> &a, int l, int r){
-	int minidx = l;
-	for(int i=l; i<=r; i++){
-		minidx = a[minidx] >= a[i] ? i : minidx;
-	}
-	return minidx;
-}
-
 void solve(){
-	int t;
-	cin>>t;
-	while(t--){
-		int n;
-		cin>>n;
-		vector<int> a(n);
-		for(int i=0; i<n; i++){
-			cin>>a[i];
-		}
-		int begin = 0;
-		while(begin < n-1){
-			int right = minidx(a, begin, n-1);
-			for(int i=right; i>begin; i--){
-				int c = a[i];
-				a[i] = a[i-1];
-				a[i-1] = c;
-			}
-			begin = right == begin ? right+1 : right;
-		}
-		for(int i : a){
-			cout<<i<<" ";
-		}
-		cout<<endl;
+	int n;
+	cin>>n;
+	vector<int> a(n);
+	for(int i=0; i<n; i++){
+		cin>>a[i];
 	}
+	sort(a.begin(), a.end());
+	vector<int> b(n);
+	int j = n/2;
+	for(int i=j, k=0; i<n; i++, k+=2){
+		debug(k);
+		debug(a[i]);
+		b[k] = a[i];
+	}
+	debuga(b);
+	for(int i=0, k=1; i<j; i++, k+=2){
+		debug(k);
+		debug(a[i]);
+		b[k] = a[i];
+	}
+int r = j;
+	if(n%2==0) r--;
+	cout<<r<<endl;
+	for(int i : b){
+		cout<<i<<" ";
+	}
+	
+	cout<<endl;
 }
 
 int main(){

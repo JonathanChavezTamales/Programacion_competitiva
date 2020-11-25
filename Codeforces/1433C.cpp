@@ -28,14 +28,6 @@
 
 using namespace std;
 
-int minidx(vector<int> &a, int l, int r){
-	int minidx = l;
-	for(int i=l; i<=r; i++){
-		minidx = a[minidx] >= a[i] ? i : minidx;
-	}
-	return minidx;
-}
-
 void solve(){
 	int t;
 	cin>>t;
@@ -43,23 +35,44 @@ void solve(){
 		int n;
 		cin>>n;
 		vector<int> a(n);
+		int maxi =0;
 		for(int i=0; i<n; i++){
 			cin>>a[i];
+			maxi = max(a[i], maxi);
 		}
-		int begin = 0;
-		while(begin < n-1){
-			int right = minidx(a, begin, n-1);
-			for(int i=right; i>begin; i--){
-				int c = a[i];
-				a[i] = a[i-1];
-				a[i-1] = c;
+		bool f = false;
+		debug(maxi);
+		for(int i=0; i<n; i++){
+			debug(i);
+			debug(a[i]);
+			if(a[i] == maxi){
+
+				if(i==0){
+					if(a[i+1] < maxi){
+						cout<<i+1<<endl;
+						f = true;
+						break;
+					}
+				}
+				else if(i==n-1){
+					if(a[i-1] < maxi){
+						cout<<i+1<<endl;
+						f= true;
+						break;
+					}
+				}
+				else{
+					if(a[i+1] < maxi || a[i-1] < maxi){
+						cout<<i+1<<endl;
+						f= true;
+						break;
+					}
+				}
 			}
-			begin = right == begin ? right+1 : right;
 		}
-		for(int i : a){
-			cout<<i<<" ";
+		if(!f){
+			cout<<-1<<endl;
 		}
-		cout<<endl;
 	}
 }
 
